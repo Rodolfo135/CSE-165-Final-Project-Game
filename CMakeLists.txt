@@ -1,3 +1,6 @@
+# Assuming you have both CMake and raylib installed, building this CMake file should build all the necessary dependencies
+# to be able to develop with raylib using C++.
+
 cmake_minimum_required(VERSION 3.14)
 project(project_game)
 
