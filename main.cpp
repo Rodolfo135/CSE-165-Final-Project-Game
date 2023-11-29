@@ -24,12 +24,25 @@ int main()
 
 
     // Character Creation
-    Texture2D viking = LoadTexture("C:/Users/Galva/Desktop/Project(game)/characters/HeroAnims.png");
+    Texture2D viking = LoadTexture("C:/Users/Galva/Desktop/Project(game)/characters/idle viking mini -Sheet.png");
 
-    // Initial Character position
+    Texture2D viking_idle = LoadTexture("C:/Users/Galva/Desktop/Project(game)/characters/idle viking mini -Sheet.png");
+    Texture2D viking_moving = LoadTexture("C:/Users/Galva/Desktop/Project(game)/characters/HeroAnims.png");
+
+    // Initial Character position is the center of the Window. This scales with the size of the window.
     Vector2 viking_pos;
     viking_pos.x = (float)dims.x/2.0f - 4.0f * (0.5f * (float)viking.width/8.0f);
     viking_pos.y = (float)dims.y/2.0f - 4.0f * (0.5f * (float)viking.height);
+
+    // 1: facing right, -1: facing left
+    float right_left = 1.f;
+
+    // Animation variables
+    float running_time = 0.0f;
+    int frame = 0;
+    const int max_frames = 8;
+    const float update_time = 1.f/12.f;
+
 
     // Game FPS
     SetTargetFPS(60);
@@ -67,27 +80,54 @@ int main()
         if (Vector2Length(dir) != 0.0)
         {
             map_pos = Vector2Subtract(map_pos, Vector2Scale(Vector2Normalize(dir), move_scale));
+
+            // Check the direction of the sprite
+            (dir.x < 0.f) ? right_left = -1.f : right_left = 1.f;
+
+            // Based on the outcome of the if statement, we can "move" the character or remain idle
+            viking = viking_moving;
+        }
+        else
+        {
+            viking = viking_idle;
         }
 
         // Draw map starting at the top-left corner of the window (0,0). Move with key inputs
         DrawTextureEx(world_map, map_pos, 0.0, 3.0, WHITE);
 
+        // Update animation frame
+        running_time += GetFrameTime();
+
+        if (running_time >= update_time)
+        {
+            frame++;
+            running_time = 0.f;
+
+            if (frame > max_frames)
+            {
+                frame = 0;
+            }
+        }
+
+
+
         // Draw the main character
         Rectangle src;
-        src.x = 0.f;
+        src.x = frame * (float)viking.width/8.f; 
         src.y = 0.f;
-        src.width = (float)viking.width/8.f;
+        src.width = right_left * (float)viking.width/8.f;
         src.height = (float)viking.height;
 
         Rectangle dest;
         dest.x = viking_pos.x;
         dest.y = viking_pos.y;
-        dest.width = 4.0f * (float)viking.width/8.0f;
-        dest.height = 4.0f * (float)viking.height;
+        dest.width = 3.0f * (float)viking.width/8.0f;
+        dest.height = 3.0f * (float)viking.height;
 
         Vector2 origin;
         origin.x = 0.0;
         origin.y = 0.0;
+
         DrawTexturePro(viking, src, dest, origin, 0.f, WHITE);
 
         EndDrawing();
