@@ -29,10 +29,10 @@ if (NOT raylib_cpp_FOUND)
 endif()
 
 # Set the source files
-set(SOURCES main.cpp Character.cpp)
+set(SOURCES main.cpp Player.cpp Obstacle.cpp Enemy.cpp Character.cpp)
 
 # Set the header files
-set(HEADERS Character.h)
+set(HEADERS Player.h Obstacle.h Enemy.h Character.h)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11)
