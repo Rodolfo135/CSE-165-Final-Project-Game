@@ -28,11 +28,17 @@ if (NOT raylib_cpp_FOUND)
     FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
-# This is the main part:
-set(SOURCES main.cpp)
-add_executable(${PROJECT_NAME} ${SOURCES})
+# Set the source files
+set(SOURCES main.cpp Character.cpp)
+
+# Set the header files
+set(HEADERS Character.h)
+
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11)
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib raylib_cpp)
+
+
 
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")
