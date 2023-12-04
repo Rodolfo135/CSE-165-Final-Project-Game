@@ -10,7 +10,7 @@ int main()
     dims.y = 684;
 
     // Initialize our window with dimensions and name
-    InitWindow(dims.x, dims.y, "Botched Rogue-Like Game");
+    InitWindow(dims.x, dims.y, "Final_Proj");
 
     // Load the world map: 24 x 24 where each block in the grid is 32 x 32.
     // Note: Had to use the complete path. For some reason the relative path wasn't working.
