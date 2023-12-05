@@ -9,12 +9,12 @@ We used the Raylib library for C++ in this project:
 - https://www.raylib.com/
 
 Instructions for how to get the code working (Windows 10):
-- Make sure you have a compiler like MINGW installed on your system.
-- Make sure you have CMake installed on your system.
+- Make sure you have a compiler like MINGW installed on your system. https://www.mingw-w64.org/
+- Make sure you have CMake installed on your system. https://cmake.org/
 - Click on the link above. Then, click download now, and follow the simple installation provided by the raylib developers.
 - From there you can clone the repository, and open it in a text editor such as Visual Studio Code (This will require the C/C++ extensions, and CMake extensions).
 - Once you do this if you must then build the CMake file. This will allow you to actually include raylib in your header and source files.
-- If you were able to successfully build, then you can now alter the code however you like.
+- If you were able to successfully build, then you can now alter and compile the code however you like.
 
 NOTE:
 - For some reason we were having issues when using the relative paths for the sprite sheets. Therefore, if one decides to clone this repository to alter and compile the code then they should (in main.cpp) change the texture paths to the paths unique to their system.
